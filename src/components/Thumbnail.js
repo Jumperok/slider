@@ -5,10 +5,15 @@ import { connect } from 'react-redux'
 
 import * as actions from '../actions'
 
-const Thumbnail= ({ src, currentIndex, indexSlide }) => {  
+const Thumbnail= ({ src, currentIndex, indexSlide, isActive }) => {
   return (
     <div>
-      <img src={src} alt="" className="small column" onClick={() => indexSlide(currentIndex)}/>
+      <img 
+        src={src} 
+        alt="" 
+        className={`small column point ${isActive}`} 
+        onClick={() => indexSlide(currentIndex)}
+      />
     </div>
   )
 }

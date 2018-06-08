@@ -29,23 +29,17 @@ export function setResume() {
 }
 
 export const fetchPictures = () => async dispatch => {
-  console.log("HERE")
   dispatch({ type: FETCH_PICTURES_PENDING })
 
   try {
     const pictures = await fetchPicturesApi() // await before any function that returns Promise
-    console.log(pictures)
+
     dispatch({
         type: FETCH_PICTURES_FULFILLED,
         payload: pictures
     })
-  } catch (err) {
-    console.log("!23");
     
-    dispatch({
-        type: FETCH_PICTURES_REJECTED,
-        payload: err,
-        error: true
-    })
+  } catch (err) {
+    dispatch({type: FETCH_PICTURES_REJECTED})
   }
 }

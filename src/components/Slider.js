@@ -13,33 +13,31 @@ import LeftArrow from './LeftArrow'
 import RightArrow from './RightArrow'
 import Thumbnails from './Thumbnails'
 
-let interval, remaining, start
-
 class Slider extends React.Component {
   constructor(props) {
     super(props);
 
-    this.time = 3000;
+    this.start = 0;
+    this.time = 10000;
+    this.interval = 0;
+    this.remaining = 0;
   }
 
   componentDidMount = () => this.props.fetchPictures()
 
-  componentDidUpdate = (prevProps, prevState) => {
-    console.log("Start compDidUpdate");
-    
+  componentDidUpdate = (prevProps, prevState) => {    
     if (!this.props.pause) {
-      start = new Date()
-      console.log(remaining);
-      interval = window.setTimeout(() => {
-        remaining = this.time
+      this.start = new Date()
+      this.interval = window.setTimeout(() => {
+        this.remaining = this.time
         this.nextSlide()
-      }, remaining)
+      }, this.remaining)
     }
   }
 
   pause = () => {
-    remaining -= new Date() - start
-    window.clearTimeout(interval)
+    this.remaining -= new Date() - this.start
+    window.clearTimeout(this.interval)
     this.props.setPause()
   }
 
@@ -48,21 +46,21 @@ class Slider extends React.Component {
   }
 
   nextSlide = () => {
-    interval = window.clearTimeout(interval)
+    this.interval = window.clearTimeout(this.interval)
     const { setIndex, currentIndex, pictures } = this.props
-    const newValue = currentIndex === pictures.length - 1 ? 0 : currentIndex + 1
-    setIndex(newValue)
+    const newIndex = currentIndex === pictures.length - 1 ? 0 : currentIndex + 1
+    setIndex(newIndex)
   }
 
   prevSlide = () => {
-    interval = window.clearTimeout(interval)
+    this.interval = window.clearTimeout(this.interval)
     const { setIndex, currentIndex, pictures } = this.props
-    const newValue = currentIndex === 0 ? pictures.length - 1 : currentIndex - 1
-    setIndex(newValue)     
+    const newIndex = currentIndex === 0 ? pictures.length - 1 : currentIndex - 1
+    setIndex(newIndex)     
   }
 
   indexSlide = (index) => {
-    interval = window.clearTimeout(interval)
+    this.interval = window.clearTimeout(this.interval)
     this.props.setIndex(index)     
   }
   
@@ -71,22 +69,33 @@ class Slider extends React.Component {
     return this.props.pictures.length === 0 ? <div></div> : (
       <div className="slider">
         <div id="pic-with-arr">
-          <LeftArrow prevSlide={this.prevSlide}/>
-          <Slide picture={this.props.pictures[currentIndex].hero} pause={this.pause} resume={this.resume} caption={this.props.pictures[currentIndex].text}/> 
-          <RightArrow nextSlide={this.nextSlide}/> 
+          <LeftArrow 
+            prevSlide={this.prevSlide}
+          />
+          <Slide 
+            picture={this.props.pictures[currentIndex].hero} 
+            pause={this.pause} 
+            resume={this.resume} 
+            caption={this.props.pictures[currentIndex].text}
+          /> 
+          <RightArrow 
+            nextSlide={this.nextSlide}
+          /> 
         </div>
-        <Thumbnails indexSlide={this.indexSlide} pictures={this.props.pictures}/>
-        <div onClick={this.pause}>PAUSE</div>
-        <div onClick={this.resume}>RESUME</div>    
+        <Thumbnails 
+          currentIndex={currentIndex}
+          indexSlide={this.indexSlide} 
+          pictures={this.props.pictures}
+        />
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  pictures: state.pictures,
-  currentIndex: state.currentIndex,
-  pause: state.pause
+  pictures: state.fetching.pictures,
+  currentIndex: state.slider.currentIndex,
+  pause: state.slider.pause
 })
 
 export default connect(mapStateToProps, actions)(Slider)

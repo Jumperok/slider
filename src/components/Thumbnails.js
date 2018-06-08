@@ -4,12 +4,20 @@ import React from 'react'
 
 import Thumbnail from './Thumbnail'
 
-const Thumbnails = ({ indexSlide, pictures }) => {
+const Thumbnails = ({ indexSlide, pictures, currentIndex }) => {
   return (
     <div className="row">
       {
         pictures.map((picture, index) => {
-          return <Thumbnail src={picture.hero} key={index} currentIndex={index} indexSlide={indexSlide}/>
+          return (
+            <Thumbnail 
+              src={picture.hero} 
+              key={index} 
+              currentIndex={index} 
+              indexSlide={indexSlide}
+              isActive={currentIndex === index ? 'active-pic' : null}
+            />
+          )
         })
       }
     </div>

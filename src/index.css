@@ -28,7 +28,7 @@ body {
 }
 
 .column {
-  /* float: left; */
+  margin: 7px;
 }
 
 .title {
@@ -41,27 +41,17 @@ body {
   background-color: black;
 }
 
-.arrows {
-
-}
-
 #pic-with-arr {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-.left-arrow {
-  /* left: 0;
-  position: absolute; */
+.point {
+  cursor: pointer;
 }
 
-.right-arrow {
-  /* right: 0;
-  position: absolute; */
-  
+.active-pic {
+  border-style: solid;
+  border-color: black;
 }
-
-/* .fa-2x {
-  font-size: 5em;
-} */
