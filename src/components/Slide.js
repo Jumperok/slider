@@ -1,4 +1,7 @@
 import React from 'react'
+
+// Components //
+
 import Caption from './Caption'
 
 const Slide = ({ picture, pause, resume, caption }) => {
@@ -8,7 +11,6 @@ const Slide = ({ picture, pause, resume, caption }) => {
       <Caption className="bottom-center caption" caption={caption} />
     </div>
   )
-  
 }
 
 export default Slide

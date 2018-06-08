@@ -1,6 +1,9 @@
 import React from 'react'
-import * as actions from '../actions'
 import { connect } from 'react-redux'
+
+// Actions // 
+
+import * as actions from '../actions'
 
 const Thumbnail= ({ src, currentIndex, indexSlide }) => {  
   return (

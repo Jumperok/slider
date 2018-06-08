@@ -1,12 +1,16 @@
 import React from 'react'
 import redux from 'redux'
 import { connect } from 'react-redux'
+
+// Actions //
+
 import * as actions from '../actions'
+
+// Components //
+
 import Slide from './Slide'
 import LeftArrow from './LeftArrow'
 import RightArrow from './RightArrow'
-//import { getSliderImages } from '../actions'
-//import pictures from '../api/pictures'
 import Thumbnails from './Thumbnails'
 
 let interval, remaining, start
@@ -23,17 +27,14 @@ class Slider extends React.Component {
   componentDidUpdate = (prevProps, prevState) => {
     console.log("Start compDidUpdate");
     
-    let time = this.time;
     if (!this.props.pause) {
       start = new Date()
       console.log(remaining);
       interval = window.setTimeout(() => {
-        remaining = time
+        remaining = this.time
         this.nextSlide()
       }, remaining)
-
     }
-
   }
 
   pause = () => {
@@ -74,7 +75,7 @@ class Slider extends React.Component {
           <Slide picture={this.props.pictures[currentIndex].hero} pause={this.pause} resume={this.resume} caption={this.props.pictures[currentIndex].text}/> 
           <RightArrow nextSlide={this.nextSlide}/> 
         </div>
-        <Thumbnails indexSlide={this.indexSlide}/>
+        <Thumbnails indexSlide={this.indexSlide} pictures={this.props.pictures}/>
         <div onClick={this.pause}>PAUSE</div>
         <div onClick={this.resume}>RESUME</div>    
       </div>

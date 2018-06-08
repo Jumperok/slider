@@ -1,8 +1,10 @@
 import React from 'react'
-import pictures from '../api/pictures'
+
+// Components //
+
 import Thumbnail from './Thumbnail'
 
-const Thumbnails = ({ indexSlide }) => {
+const Thumbnails = ({ indexSlide, pictures }) => {
   return (
     <div className="row">
       {

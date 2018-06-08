@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react'
+
+// Components //
+
 import Slider from './Slider'
 import Title from './Title'
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <React.Fragment>
