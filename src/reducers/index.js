@@ -1,8 +1,14 @@
-import { SET_INDEX, SET_PAUSE, SET_RESUME } from '../actions/types'
+import { 
+  SET_INDEX, 
+  SET_PAUSE, 
+  SET_RESUME,
+  FETCH_PICTURES_FULFILLED
+} from '../actions/types'
 
 const initialState = {
   currentIndex: 0,
-  pause: false
+  pause: false,
+  pictures: []
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -13,6 +19,8 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, pause: true }
     case SET_RESUME:
       return { ...state, pause: false }
+    case FETCH_PICTURES_FULFILLED:
+      return { ...state, pictures: payload }
     default:
       return state
   }

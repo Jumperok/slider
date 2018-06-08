@@ -2,8 +2,8 @@ import React from 'react';
 
 const Title = () => {
   return (
-    <div>
-      Title
+    <div className="title">
+      React Slider
     </div>
   )
 }

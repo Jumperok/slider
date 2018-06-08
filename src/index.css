@@ -17,3 +17,51 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.small {
+  height: 100px;
+  width: 100px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.column {
+  /* float: left; */
+}
+
+.title {
+  text-align: center;
+  font-size: 400%;
+  margin: 1%;
+}
+
+.caption {
+  background-color: black;
+}
+
+.arrows {
+
+}
+
+#pic-with-arr {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.left-arrow {
+  /* left: 0;
+  position: absolute; */
+}
+
+.right-arrow {
+  /* right: 0;
+  position: absolute; */
+  
+}
+
+/* .fa-2x {
+  font-size: 5em;
+} */
