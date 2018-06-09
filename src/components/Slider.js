@@ -12,7 +12,7 @@ class Slider extends React.Component {
     super(props)
 
     this.start = 0
-    this.interval = 3000
+    this.interval = 10000 // 10 seconds
     this.timer = null
     this.remaining = 0
   }
