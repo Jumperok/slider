@@ -11,7 +11,7 @@ const Slide = ({ picture, pause, resume, caption }) => {
         onMouseEnter={pause} 
         onMouseLeave={resume} 
         src={picture} 
-        alt={picture}
+        alt=""
       />
       <Caption 
         className="bottom-center caption" 

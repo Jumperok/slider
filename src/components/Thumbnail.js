@@ -1,9 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 // Actions // 
-
-import * as actions from '../actions'
 
 const Thumbnail= ({ src, currentIndex, indexSlide, isActive }) => {
   return (
@@ -18,4 +15,4 @@ const Thumbnail= ({ src, currentIndex, indexSlide, isActive }) => {
   )
 }
 
-export default connect(null, actions)(Thumbnail)
+export default Thumbnail

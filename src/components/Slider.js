@@ -1,10 +1,4 @@
 import React from 'react'
-import redux from 'redux'
-import { connect } from 'react-redux'
-
-// Actions //
-
-import * as actions from '../actions'
 
 // Components //
 
@@ -15,87 +9,77 @@ import Thumbnails from './Thumbnails'
 
 class Slider extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.start = 0;
-    this.time = 10000;
-    this.interval = 0;
-    this.remaining = 0;
+    this.start = 0
+    this.interval = 3000
+    this.timer = null
+    this.remaining = 0
   }
 
   componentDidMount = () => this.props.fetchPictures()
 
-  componentDidUpdate = (prevProps, prevState) => {    
-    if (!this.props.pause) {
+  componentWillUnmount = () => window.clearTimeout(this.timer)
+
+  componentDidUpdate = () => {
+    const { currentIndex, pictures, pause } = this.props
+
+    if (!pause) {
       this.start = new Date()
-      this.interval = window.setTimeout(() => {
-        this.remaining = this.time
-        this.nextSlide()
+      this.timer = window.setTimeout(() => {
+        this.remaining = this.interval
+        this.nextSlide(currentIndex, pictures.length)
       }, this.remaining)
     }
   }
 
   pause = () => {
     this.remaining -= new Date() - this.start
-    window.clearTimeout(this.interval)
+    window.clearTimeout(this.timer)
     this.props.setPause()
   }
 
-  resume = () => {
-    this.props.setResume()
+  nextSlide = (currentIndex, picturesLength) => {
+    this.timer = window.clearTimeout(this.timer)
+    this.props.nextPicture(currentIndex, picturesLength)
   }
 
-  nextSlide = () => {
-    this.interval = window.clearTimeout(this.interval)
-    const { setIndex, currentIndex, pictures } = this.props
-    const newIndex = currentIndex === pictures.length - 1 ? 0 : currentIndex + 1
-    setIndex(newIndex)
-  }
-
-  prevSlide = () => {
-    this.interval = window.clearTimeout(this.interval)
-    const { setIndex, currentIndex, pictures } = this.props
-    const newIndex = currentIndex === 0 ? pictures.length - 1 : currentIndex - 1
-    setIndex(newIndex)     
+  prevSlide = (currentIndex, picturesLength) => {
+    this.timer = window.clearTimeout(this.timer)
+    this.props.prevPicture(currentIndex, picturesLength)
   }
 
   indexSlide = (index) => {
-    this.interval = window.clearTimeout(this.interval)
+    this.timer = window.clearTimeout(this.timer)
     this.props.setIndex(index)     
   }
   
   render() {
-    const { currentIndex } = this.props
-    return this.props.pictures.length === 0 ? <div></div> : (
+    const { currentIndex, pictures, setResume } = this.props
+    return pictures.length === 0 ? <div></div> : (
       <div className="slider">
         <div id="pic-with-arr">
           <LeftArrow 
-            prevSlide={this.prevSlide}
+            prevSlide={() => this.prevSlide(currentIndex, pictures.length)}
           />
           <Slide 
-            picture={this.props.pictures[currentIndex].hero} 
+            picture={pictures[currentIndex].hero} 
             pause={this.pause} 
-            resume={this.resume} 
-            caption={this.props.pictures[currentIndex].text}
+            resume={setResume} 
+            caption={pictures[currentIndex].text}
           /> 
           <RightArrow 
-            nextSlide={this.nextSlide}
+            nextSlide={() => this.nextSlide(currentIndex, pictures.length)}
           /> 
         </div>
         <Thumbnails 
           currentIndex={currentIndex}
           indexSlide={this.indexSlide} 
-          pictures={this.props.pictures}
+          pictures={pictures}
         />
       </div>
     )
   }
 }
 
-const mapStateToProps = state => ({
-  pictures: state.fetching.pictures,
-  currentIndex: state.slider.currentIndex,
-  pause: state.slider.pause
-})
-
-export default connect(mapStateToProps, actions)(Slider)
+export default Slider

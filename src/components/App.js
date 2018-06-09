@@ -2,7 +2,7 @@ import React from 'react'
 
 // Components //
 
-import Slider from './Slider'
+import Slider from '../containers/SliderContainer'
 import Title from './Title'
 
 class App extends React.Component {
