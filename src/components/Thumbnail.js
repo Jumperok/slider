@@ -8,7 +8,7 @@ const Thumbnail= ({ src, currentIndex, indexSlide, isActive }) => {
       <img 
         src={src} 
         alt="" 
-        className={`small column point ${isActive}`} 
+        className={`small thumbnail point ${isActive}`} 
         onClick={() => indexSlide(currentIndex)}
       />
     </div>

@@ -6,7 +6,7 @@ import Thumbnail from './Thumbnail'
 
 const Thumbnails = ({ indexSlide, pictures, currentIndex }) => {
   return (
-    <div className="row">
+    <div className="thumbnails">
       {
         pictures.map((picture, index) => {
           return (

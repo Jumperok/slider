@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Caption = ({className, caption}) => {
+const Caption = ({caption}) => {
   return (
-    <div className={className}>
+    <p><span>
       {caption}
-    </div>
+    </span></p>
   )
 }
 

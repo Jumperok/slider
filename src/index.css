@@ -1,50 +1,82 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  /* font-family: sans-serif; */
 }
 
-#container {
-  position: relative;
+.picture {
+  width: 100%;
+}
+
+.arrow-div {
   text-align: center;
-  color: white;
+  width: 10%;
+  /* background: salmon; */
 }
 
-.bottom-center {
+.slide {
+  max-width: 80%;
+  position: relative;
+}
+
+.arrow {
+  font-size: 8vw;
+}
+
+.slide p {
   position: absolute;
-  bottom: 8px;
   left: 50%;
   transform: translate(-50%, -50%);
+  padding: 2%;
+  bottom: 1%;
+  margin: 0;
+  background: #000;
+  white-space: nowrap;
+}
+
+.slide p span {
+  font-size: 3vw;  
+  color: #fff;
 }
 
 .small {
-  height: 100px;
-  width: 100px;
+  height: 7vw;
+  /* width: 30%; */
+  /* max-height: 20%; */
 }
 
-.row {
+.thumbnails {
   display: flex;
   justify-content: center;
 }
 
-.column {
-  margin: 7px;
+.thumbnail {
+  border: 2px solid white;
 }
 
 .title {
   text-align: center;
-  font-size: 400%;
+  font-size: 6vw;
   margin: 1%;
 }
 
 .caption {
-  background-color: black;
+  text-align: center;
+  margin: 0;
+  display:inline-block;
+    position: absolute;
 }
 
 #pic-with-arr {
   display: flex;
+  width: auto;
   justify-content: space-around;
   align-items: center;
+  /* background: firebrick; */
+}
+
+.pic-with-arr-elem{
+
 }
 
 .point {
@@ -52,6 +84,23 @@ body {
 }
 
 .active-pic {
-  border-style: solid;
+  /* border-style: solid;
+  border-color: black; */
   border-color: black;
+}
+
+@media screen and (min-width: 813px) {
+  .title {
+    font-size: 400%;
+  }
+
+  .slide p span {
+    font-size: 200%;  
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .small {
+    height: 80px;
+  }
 }

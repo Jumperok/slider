@@ -6,15 +6,15 @@ import Caption from './Caption'
 
 const Slide = ({ picture, pause, resume, caption }) => {
   return (
-    <div id='container'>
+    <div className='pic-with-arr-elem slide'>
       <img 
+        className='picture'
         onMouseEnter={pause} 
         onMouseLeave={resume} 
         src={picture} 
         alt=""
       />
       <Caption 
-        className="bottom-center caption" 
         caption={caption} 
       />
     </div>

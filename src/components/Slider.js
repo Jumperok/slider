@@ -56,7 +56,7 @@ class Slider extends React.Component {
   
   render() {
     const { currentIndex, pictures, setResume } = this.props
-    return pictures.length === 0 ? <div></div> : (
+    return pictures.length === 0 ? null : (
       <div className="slider">
         <div id="pic-with-arr">
           <LeftArrow 
