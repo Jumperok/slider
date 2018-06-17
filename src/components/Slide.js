@@ -6,7 +6,7 @@ import Caption from './Caption'
 
 const Slide = ({ picture, pause, resume, caption }) => {
   return (
-    <div className='pic-with-arr-elem slide'>
+    <div className='slide'>
       <img 
         className='picture'
         onMouseEnter={pause} 

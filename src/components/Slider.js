@@ -6,6 +6,7 @@ import Slide from './Slide'
 import LeftArrow from './LeftArrow'
 import RightArrow from './RightArrow'
 import Thumbnails from './Thumbnails'
+import Empty from './Empty'
 
 class Slider extends React.Component {
   constructor(props) {
@@ -56,29 +57,29 @@ class Slider extends React.Component {
   
   render() {
     const { currentIndex, pictures, setResume } = this.props
-    return pictures.length === 0 ? null : (
-      <div className="slider">
-        <div id="pic-with-arr">
-          <LeftArrow 
-            prevSlide={() => this.prevSlide(currentIndex, pictures.length)}
+    return pictures.length === 0 
+      ? <Empty /> 
+      : <div className="slider">
+          <div id="pic-with-arr">
+            <LeftArrow 
+              prevSlide={() => this.prevSlide(currentIndex, pictures.length)}
+            />
+            <Slide 
+              picture={pictures[currentIndex].hero} 
+              pause={this.pause} 
+              resume={setResume} 
+              caption={pictures[currentIndex].text}
+            /> 
+            <RightArrow 
+              nextSlide={() => this.nextSlide(currentIndex, pictures.length)}
+            /> 
+          </div>
+          <Thumbnails 
+            currentIndex={currentIndex}
+            indexSlide={this.indexSlide} 
+            pictures={pictures}
           />
-          <Slide 
-            picture={pictures[currentIndex].hero} 
-            pause={this.pause} 
-            resume={setResume} 
-            caption={pictures[currentIndex].text}
-          /> 
-          <RightArrow 
-            nextSlide={() => this.nextSlide(currentIndex, pictures.length)}
-          /> 
-        </div>
-        <Thumbnails 
-          currentIndex={currentIndex}
-          indexSlide={this.indexSlide} 
-          pictures={pictures}
-        />
       </div>
-    )
   }
 }
 

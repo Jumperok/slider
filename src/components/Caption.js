@@ -1,11 +1,12 @@
 import React from 'react'
 
-const Caption = ({caption}) => {
-  return (
-    <p><span>
+const Caption = ({caption}) => (
+  <p>
+    <span>
       {caption}
-    </span></p>
-  )
-}
+    </span>
+  </p>
+)
+
 
 export default Caption
