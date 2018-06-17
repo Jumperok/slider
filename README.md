@@ -4,6 +4,8 @@ Simple React Slider based on the following technologies:
 * ReactJS
 * Redux
 
+Here you can see how it looks like: https://react-slider-test-icles.herokuapp.com/
+
 ## Installation
 Clone from repository:
 ```
